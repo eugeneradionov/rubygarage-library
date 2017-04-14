@@ -8,6 +8,6 @@ class Book
   end
 
   def to_s
-    "Books: #{title} by #{author}"
+    "#{title} by #{author}"
   end
 end

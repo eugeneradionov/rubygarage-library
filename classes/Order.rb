@@ -9,6 +9,6 @@ class Order
   end
 
   def to_s
-    "Book: #{book}, Reader: #{reader}, Date: #{@date.strftime('%Y %b %d, %H:%M')}"
+    "Book: #{book}, Reader: #{reader.name}, Date: #{@date.strftime('%Y %b %d, %H:%M')}"
   end
 end
