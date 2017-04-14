@@ -8,6 +8,6 @@ class Author
   end
 
   def to_s
-    "Name: #{name}:\nBiography: #{biography}"
+    "#{name}:\nBiography: #{biography}"
   end
 end
