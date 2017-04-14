@@ -3,8 +3,12 @@ require_relative 'Book'
 require_relative 'Order'
 require_relative 'Reader'
 require 'faker'
+require 'yaml'
+
 # Library stores all books, readers, authors and orders
 class Library
+  attr_accessor :books, :orders, :authors, :readers
+
   def initialize(books = [], orders = [], readers = [], authors = [])
     @books = books
     @orders = orders
@@ -12,12 +16,29 @@ class Library
     @authors = authors
   end
 
+  def write_to_yaml(file_name = 'library.yml')
+    File.new(file_name, 'w') unless File.exist?(file_name)
+    File.open(file_name, 'w') { |file| file.write(self.to_yaml) }
+  end
+
+  def read_from_yaml(file_name = 'library.yml')
+    if File.exist?(file_name)
+      library = YAML.load_file(file_name)
+      @authors = library.authors
+      @books = library.books
+      @orders = library.orders
+      @readers = library.readers
+    else
+      puts 'There is no such file.'
+    end
+  end
+
   def seeds
     @authors = []
     @books = []
     10.times do
       author = Faker::Book.unique.author
-      bio = 'Some biography'
+      bio = 'Some biography.'
       title = Faker::Book.unique.title
       @authors.push Author.new(author, bio)
       @books.push Book.new(title, author)
