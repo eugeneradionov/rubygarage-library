@@ -33,6 +33,27 @@ class Library
     end
   end
 
+  def most_popular_reader
+    most_popular(1, :reader).first.name
+  end
+
+  def count_readers_of_popular_books
+    most_popular(3, :book)
+    set = []
+    @orders.each { |order| set << order.reader if (order.book && books).any? }
+    set.uniq.length
+  end
+
+  def most_popular_book
+    most_popular(1, :book).first.title
+  end
+
+  def most_popular(elements_qty, method)
+    @orders.group_by(&method)
+           .max_by(elements_qty) { |_, value| value.length }
+           .to_h.keys
+  end
+
   def seeds
     @authors = []
     @books = []
