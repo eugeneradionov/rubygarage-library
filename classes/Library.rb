@@ -64,7 +64,7 @@ class Library
   end
 
   def count_readers_of_popular_books
-    most_popular(3, :book)
+    books = most_popular(3, :book)
     set = []
     @orders.each { |order| set << order.reader if (order.book && books).any? }
     set.uniq.length
