@@ -1,7 +1,7 @@
 # RubyGarage Library Task
 
 ## How to run
-``` $ ruby main.rb ```
+``` $ruby main.rb ```
 
 ## Main Idea
 ### There are 5 classes which are related with each other:
