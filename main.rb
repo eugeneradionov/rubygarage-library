@@ -1,17 +1,14 @@
-require_relative './classes/Library'
+require_relative './classes/library'
 
 lib1 = Library.new
-lib2 = Library.new
-# lib1.seeds
-# lib1.write_to_yaml('lib1.yml')
-lib1.read_from_yaml('lib1.yml')
-lib2.read_from_yaml('lib1.yml')
-Library.write_to_yaml('Library.yml')
-libs = Library.read_from_yaml('Library.yml')
+file_name = 'lib1.yml'
 
-libs.each do |obj|
-  puts obj.books
+unless File.exist?(file_name)
+  lib1.seeds
+  lib1.write_to_yaml(file_name)
 end
+
+lib1.read_from_yaml(file_name)
 
 puts "Most popular reader: #{lib1.most_popular_reader}."
 puts "Most popular book: #{lib1.most_popular_book}."
