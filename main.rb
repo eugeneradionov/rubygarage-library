@@ -1,10 +1,12 @@
 require_relative './classes/library'
+require './classes/seeds'
 
 lib1 = Library.new
 file_name = 'lib1.yml'
 
+
 unless File.exist?(file_name)
-  lib1.seeds
+  Seeds.seeds(lib1)
   lib1.write_to_yaml(file_name)
 end
 

@@ -2,13 +2,11 @@ require_relative 'author'
 require_relative 'book'
 require_relative 'order'
 require_relative 'reader'
-require_relative 'seeds'
 require 'faker'
 require 'yaml'
 
 # Library stores all books, readers, authors and orders
 class Library
-  include Seeds
 
   attr_accessor :books, :orders, :authors, :readers
 
@@ -46,10 +44,6 @@ class Library
 
   def most_popular_book
     most_popular(1, :book).first.title
-  end
-
-  def seeds
-    Seeds.seeds(self)
   end
 
   private
