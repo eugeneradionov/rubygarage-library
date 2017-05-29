@@ -39,7 +39,8 @@ class Library
   end
 
   def count_readers_of_popular_books
-    @orders.select { |order| books.include? order.book }.map(&:reader).uniq.size
+    books3 = most_popular(3, :book)
+    @orders.select { |order| books3.include? order.book }.map(&:reader).uniq.size
   end
 
   def most_popular_book
